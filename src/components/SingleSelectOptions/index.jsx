@@ -1,6 +1,6 @@
-const DefaultOptions = () => {
+const SingleSelectOptions =() => {
     return (
-        <div className="default-options">
+        <div className="single-select-options">
             <button>A &nbsp; New Delhi</button>
             <button>B &nbsp; Mumbai</button>
             <button>C &nbsp; Kolkata</button>
@@ -9,4 +9,4 @@ const DefaultOptions = () => {
     );
 }
 
-export default DefaultOptions;
+export default SingleSelectOptions;

@@ -2,10 +2,18 @@ import React from "react";
 import { useState , useEffect } from "react";
 import QuestionPalette from "../QuestionPalette";
 import Header from "../Header";
-const AssessmentPage = () => {
+import SingleSelectOptions from "../SingleSelectOptions";
 
+
+
+const AssessmentPage = () => {
   const [questions, setQuestions] = useState([])
   const [isLoading, setIsLoading] = useState(true);
+
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const currentQuestion = questions[currentQuestionIndex];
+
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -27,24 +35,57 @@ const AssessmentPage = () => {
   if(isLoading) {
     return <p>Loading...</p>
   }
-  
+
+  const handleNextQuestion = () => {
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
+
+  const renderOptions = () => {
+    if(currentQuestion.typeofOption === "single") {
+      return (
+         <SingleSelectOptions
+        options={currentQuestion.setofOptions}
+      />
+    )
+  }
+}
+
   return (
     <div className="assessment-page">
      <Header />
       <div className="assessment-content">
         <div className="question-section">
-          <p>Question 1 of 15</p>
+          <p>Question {currentQuestionIndex + 1} of {questions.length}</p>
           <h2>
-            What is the capital of India?
+            {currentQuestion?.Question}
           </h2>
-          <div className="options">
+          {/* <div className="options">
             <button>A &nbsp; New Delhi</button>
             <button>B &nbsp; Mumbai</button>
             <button>C &nbsp; Kolkata</button>
             <button>D &nbsp; Chennai</button>
-          </div>
-          <button className="next-button">
-            Next Question
+          </div> */}
+
+            {renderOptions()}
+           <button  
+            className="previous-button"
+            onClick={handlePreviousQuestion}
+            disabled={currentQuestionIndex === 0}
+          >Previous</button>
+          <button
+            className="next-button"
+            onClick={handleNextQuestion}
+            disabled={currentQuestionIndex === questions.length - 1}
+          >Next Question
           </button>
         </div>
         <QuestionPalette />
@@ -53,4 +94,4 @@ const AssessmentPage = () => {
   );
 }
 
-export default AssessmentPage;
+export default AssessmentPage
