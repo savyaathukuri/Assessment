@@ -3,8 +3,8 @@ import { useState , useEffect } from "react";
 import QuestionPalette from "../QuestionPalette";
 import Header from "../Header";
 import SingleSelectOptions from "../SingleSelectOptions";
-
-
+import ImageOption from "../ImageOption";
+import DefaultOption from "../DefaultOption";
 
 const AssessmentPage = () => {
   const [questions, setQuestions] = useState([])
@@ -50,13 +50,26 @@ const AssessmentPage = () => {
 
 
   const renderOptions = () => {
-    if(currentQuestion.typeofOption === "single") {
+    if(currentQuestion.typeofOption === "SINGLE_SELECT") {
+        return (
+          <SingleSelectOptions setOfOptions={currentQuestion.setofOptions} />
+      )
+    }
+    else if(currentQuestion.typeofOption === "multiple") {
       return (
-         <SingleSelectOptions
-        options={currentQuestion.setofOptions}
-      />
-    )
-  }
+        <h1>Multiple Select Options</h1>
+      )
+    }
+    else if(currentQuestion.typeofOption === "DEFAULT") {
+      return (
+        <DefaultOption setOfOptions={currentQuestion.setofOptions} />
+      )
+    }
+    else {
+      return (
+        <ImageOption setOfOptions={currentQuestion.setofOptions} />
+      )
+    }
 }
 
   return (

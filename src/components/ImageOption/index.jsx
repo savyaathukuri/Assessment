@@ -1,11 +1,15 @@
-const ImageOption = () => {
+const ImageOption = (props) => {
+  const { setOfOptions } = props;
+  const {id , image_url, is_correct, text } = setOfOptions;
   return (
     <div className="image-option">
-      <button>A &nbsp;Image1</button>
-      <button>B &nbsp; Image2</button>  
-    <button>C &nbsp; Image3</button>
-    <button>D &nbsp; Image4</button>
-    </div>  
+      {setOfOptions.map((option) => (
+        <div key={option.id} className="image-option-container">
+          <img src={option.image_url} alt={option.text} className="image-option-image" />
+          <p className="image-option-text">{option.text}</p>
+        </div>
+      ))}
+    </div>
   );
 }
 
