@@ -1,17 +1,4 @@
-const SingleSelectOptions =(props) => {
-
-    const { setOfOptions } = props;
-    const {id, text, is_correct} = setOfOptions;
-
-    return (
-        <div className="single-select-options">
-            {setOfOptions.map((option) => (
-                <button key={option.id} className="option-button">
-                    {option.text}
-                </button>
-            ))}
-        </div>
-    );
-}
-
-export default SingleSelectOptions;
+import {useAssessment} from '../../context/AssessmentContext'
+import './index.css'
+const SingleSelectOptions = () => { const {currentQuestion, answers, selectAnswer} = useAssessment(); const selected = answers[currentQuestion.id]; return <div className="single-select-options">{currentQuestion.options.map(option => <button type="button" key={option.id} className={`option-button ${selected === option.id ? 'selected' : ''}`} onClick={() => selectAnswer(option.id)}><span>{option.id}</span>{option.text}{selected === option.id && <b>✓</b>}</button>)}</div> }
+export default SingleSelectOptions

@@ -1,8 +1,1 @@
-
-.assessment-header {
-  background-color: #f8f9fa;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/* Shared header styles live in App.css. */

@@ -1,14 +1,6 @@
-import React from 'react';
-import QuestionsResults from '../QuestionsResults';
-const ResultPageSubmitted = () => {
-    return (
-        <div className="result-page-submitted">
-            <h1>Assessment Submitted!</h1>
-            <p>Thank you for completing the assessment. Your results will be evaluated and shared with you shortly.</p>
-            <button className="primary-button">Go to Dashboard</button>
-            <QuestionsResults/>
-        </div>
-    );
-}
-
-export default ResultPageSubmitted;
+import {useNavigate} from 'react-router-dom'
+import Header from '../Header'
+import QuestionsResults from '../QuestionsResults'
+import './index.css'
+const ResultPageSubmitted = () => { const navigate = useNavigate(); return <><Header /><main className="result-page submitted"><section><div className="result-icon success">✓</div><h1>Assessment Submitted!</h1><p>Great job! You have completed the assessment.</p><button className="primary-button" onClick={() => navigate('/')}>Reattempt</button></section><QuestionsResults /></main></> }
+export default ResultPageSubmitted
