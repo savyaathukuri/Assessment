@@ -39,7 +39,9 @@ const LoginForm = () => {
         }),
       })
 
-      const data = await response.json()
+      // A misconfigured deployment can return an HTML error page. Avoid hiding
+      // the useful HTTP error behind a JSON parsing exception.
+      const data = await response.json().catch(() => ({}))
 
       if (!response.ok) {
         throw new Error(data.error_msg || 'Invalid username or password')

@@ -4,7 +4,8 @@ import {createContext, useContext, useEffect, useState} from 'react'
 
 const AssessmentContext = createContext(null)
 
-const QUESTION_URL = 'https://apis.ccbp.in/assess/questions'
+// Vite proxies this in development and Vercel rewrites it in production.
+const QUESTION_URL = '/api/assess/questions'
 const DURATION = 15 * 60
 
 const getCorrectAnswer = question => {
