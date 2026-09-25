@@ -13,7 +13,7 @@ const DefaultOption = () => {
 
   return (
     <div className="default-options">
-      {currentQuestion.options.map(option => (
+      {currentQuestion.options.map((option, index) => (
         <button
           type="button"
           key={option.id}
@@ -22,7 +22,7 @@ const DefaultOption = () => {
           }`}
           onClick={() => selectAnswer(option.id)}
         >
-          <span>{option.id}</span>
+          <span>{String.fromCharCode(65 + index)}</span>
 
           {option.text}
 

@@ -19,7 +19,7 @@ const QuestionRenderer = () => {
     return <SingleSelectOptions />
   }
 
-  if (currentQuestion.typeofOption === 'IMAGE_OPTIONS') {
+  if (currentQuestion.typeofOption.includes('IMAGE')) {
     return <ImageOption />
   }
 

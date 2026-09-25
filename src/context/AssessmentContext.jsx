@@ -51,9 +51,15 @@ export const AssessmentProvider = ({children}) => {
       const formattedQuestions = (data.questions || []).map(
         question => ({
           id: question.id,
-          typeofOption: question.options_type,
+          // The API can use IMAGE, IMAGE_OPTION, or IMAGE_OPTIONS.
+          typeofOption: String(question.options_type || '').toUpperCase(),
           question: question.question_text,
-          options: question.options || [],
+          options: (question.options || []).map(option => ({
+            ...option,
+            text: option.text || option.option_text || '',
+            imageUrl:
+              option.image_url || option.imageUrl || option.image || option.url,
+          })),
           correctAnswer: getCorrectAnswer(question),
         }),
       )

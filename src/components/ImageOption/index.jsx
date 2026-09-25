@@ -22,10 +22,11 @@ const ImageOption = () => {
           }`}
           onClick={() => selectAnswer(option.id)}
         >
-          <img
-            src={option.image_url}
-            alt={option.text}
-          />
+          {option.imageUrl ? (
+            <img src={option.imageUrl} alt={option.text} />
+          ) : (
+            <span className="missing-image">Image unavailable</span>
+          )}
 
           <span>{option.text}</span>
 
